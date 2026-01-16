@@ -4,6 +4,8 @@ import com.dayrater.data.repository.FamilyRepository
 import com.dayrater.data.repository.FamilyRepositoryImpl
 import com.dayrater.data.repository.RatingRepository
 import com.dayrater.data.repository.RatingRepositoryImpl
+import com.dayrater.data.repository.SettingsRepository
+import com.dayrater.data.repository.SettingsRepositoryImpl
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -28,4 +30,10 @@ abstract class RepositoryModule {
     abstract fun bindFamilyRepository(
         familyRepositoryImpl: FamilyRepositoryImpl
     ): FamilyRepository
+    
+    @Binds
+    @Singleton
+    abstract fun bindSettingsRepository(
+        settingsRepositoryImpl: SettingsRepositoryImpl
+    ): SettingsRepository
 }

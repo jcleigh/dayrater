@@ -4,6 +4,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.dayrater.data.repository.FamilyRepository
 import com.dayrater.data.repository.RatingRepository
+import com.dayrater.data.repository.SettingsRepository
+import com.dayrater.data.repository.ThemeMode
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -20,7 +22,8 @@ import javax.inject.Inject
 @HiltViewModel
 class SettingsViewModel @Inject constructor(
     private val ratingRepository: RatingRepository,
-    private val familyRepository: FamilyRepository
+    private val familyRepository: FamilyRepository,
+    private val settingsRepository: SettingsRepository
 ) : ViewModel() {
     
     private val _uiState = MutableStateFlow(SettingsUiState())
@@ -34,19 +37,21 @@ class SettingsViewModel @Inject constructor(
         viewModelScope.launch {
             combine(
                 ratingRepository.getActiveCategories(),
-                familyRepository.getActiveFamilyMembers()
-            ) { categories, familyMembers ->
-                Pair(categories.size, familyMembers.size)
+                familyRepository.getActiveFamilyMembers(),
+                settingsRepository.themeMode
+            ) { categories, familyMembers, themeMode ->
+                Triple(categories.size, familyMembers.size, themeMode)
             }
             .catch { e ->
                 _uiState.update { it.copy(error = e.message) }
             }
-            .collect { (categoryCount, familyMemberCount) ->
+            .collect { (categoryCount, familyMemberCount, themeMode) ->
                 _uiState.update { state ->
                     state.copy(
                         isLoading = false,
                         categoryCount = categoryCount,
-                        familyMemberCount = familyMemberCount
+                        familyMemberCount = familyMemberCount,
+                        themeMode = themeMode
                     )
                 }
             }
@@ -57,6 +62,18 @@ class SettingsViewModel @Inject constructor(
         when (event) {
             is SettingsEvent.DismissError -> {
                 _uiState.update { it.copy(error = null) }
+            }
+            is SettingsEvent.ShowThemeDialog -> {
+                _uiState.update { it.copy(showThemeDialog = true) }
+            }
+            is SettingsEvent.DismissThemeDialog -> {
+                _uiState.update { it.copy(showThemeDialog = false) }
+            }
+            is SettingsEvent.SetThemeMode -> {
+                viewModelScope.launch {
+                    settingsRepository.setThemeMode(event.mode)
+                    _uiState.update { it.copy(showThemeDialog = false) }
+                }
             }
             // Navigation events are handled by the composable
             else -> {}

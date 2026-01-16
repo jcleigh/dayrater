@@ -6,9 +6,11 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.toRoute
+import com.dayrater.ui.export.ExportScreen
 import com.dayrater.ui.history.DayDetailScreen
 import com.dayrater.ui.history.HistoryScreen
 import com.dayrater.ui.rating.RatingScreen
+import com.dayrater.ui.settings.CustomCategoriesScreen
 import com.dayrater.ui.settings.FamilySetupScreen
 import com.dayrater.ui.settings.SettingsScreen
 import java.time.LocalDate
@@ -61,8 +63,9 @@ fun DayRaterNavGraph(
         
         // Manage Categories
         composable<Screen.ManageCategories> {
-            // TODO: Implement ManageCategoriesScreen
-            PlaceholderScreen(title = "Manage Categories")
+            CustomCategoriesScreen(
+                onNavigateBack = { navController.popBackStack() }
+            )
         }
         
         // Manage Family Members
@@ -74,8 +77,9 @@ fun DayRaterNavGraph(
         
         // Export
         composable<Screen.Export> {
-            // TODO: Implement ExportScreen
-            PlaceholderScreen(title = "Export Data")
+            ExportScreen(
+                onNavigateBack = { navController.popBackStack() }
+            )
         }
     }
 }

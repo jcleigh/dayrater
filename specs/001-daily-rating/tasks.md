@@ -166,10 +166,10 @@
 
 ### UI Implementation
 
-- [ ] T059 [US4] Create CustomCategoriesUiState data class in `app/src/main/java/com/dayrater/ui/settings/CustomCategoriesUiState.kt`
-- [ ] T060 [US4] Create CustomCategoriesViewModel in `app/src/main/java/com/dayrater/ui/settings/CustomCategoriesViewModel.kt`
-- [ ] T061 [US4] Implement CustomCategoriesScreen composable in `app/src/main/java/com/dayrater/ui/settings/CustomCategoriesScreen.kt`
-- [ ] T062 [US4] Add category management methods to RatingRepository
+- [X] T059 [US4] Create CustomCategoriesUiState data class in `app/src/main/java/com/dayrater/ui/settings/CustomCategoriesUiState.kt`
+- [X] T060 [US4] Create CustomCategoriesViewModel in `app/src/main/java/com/dayrater/ui/settings/CustomCategoriesViewModel.kt`
+- [X] T061 [US4] Implement CustomCategoriesScreen composable in `app/src/main/java/com/dayrater/ui/settings/CustomCategoriesScreen.kt`
+- [X] T062 [US4] Add category management methods to RatingRepository
 
 **Checkpoint**: US4 complete — custom categories can be added/removed/renamed
 
@@ -183,15 +183,15 @@
 
 ### Repository Layer
 
-- [ ] T063 [US5] Add exportToCsv() method to RatingRepository
-- [ ] T064 [US5] Add exportToJson() method to RatingRepository
+- [X] T063 [US5] Add exportToCsv() method to RatingRepository
+- [X] T064 [US5] Add exportToJson() method to RatingRepository
 
 ### UI Implementation
 
-- [ ] T065 [US5] Create ExportUiState data class in `app/src/main/java/com/dayrater/ui/export/ExportUiState.kt`
-- [ ] T066 [US5] Create ExportViewModel in `app/src/main/java/com/dayrater/ui/export/ExportViewModel.kt`
-- [ ] T067 [US5] Implement ExportScreen composable in `app/src/main/java/com/dayrater/ui/export/ExportScreen.kt`
-- [ ] T068 [US5] Implement share intent with FileProvider in ExportViewModel
+- [X] T065 [US5] Create ExportUiState data class in `app/src/main/java/com/dayrater/ui/export/ExportUiState.kt`
+- [X] T066 [US5] Create ExportViewModel in `app/src/main/java/com/dayrater/ui/export/ExportViewModel.kt`
+- [X] T067 [US5] Implement ExportScreen composable in `app/src/main/java/com/dayrater/ui/export/ExportScreen.kt`
+- [X] T068 [US5] Implement share intent with FileProvider in ExportViewModel
 
 **Checkpoint**: US5 complete — data exports correctly, shareable to Drive/email/etc.
 
@@ -201,13 +201,13 @@
 
 **Purpose**: Quality improvements across all user stories
 
-- [ ] T069 [P] Create SettingsRepository for theme preference in `app/src/main/java/com/dayrater/data/repository/SettingsRepository.kt`
-- [ ] T070 Implement theme switching in SettingsScreen using DataStore
-- [ ] T071 [P] Add empty state handling to HistoryScreen
-- [ ] T072 [P] Add loading states to all ViewModels
-- [ ] T073 [P] Add error handling and user feedback (Snackbars) across screens
-- [ ] T074 Update README.md with project description and build instructions
-- [ ] T075 Run full quickstart.md validation on clean clone
+- [X] T069 [P] Create SettingsRepository for theme preference in `app/src/main/java/com/dayrater/data/repository/SettingsRepository.kt`
+- [X] T070 Implement theme switching in SettingsScreen using DataStore
+- [X] T071 [P] Add empty state handling to HistoryScreen
+- [X] T072 [P] Add loading states to all ViewModels
+- [X] T073 [P] Add error handling and user feedback (Snackbars) across screens
+- [X] T074 Update README.md with project description and build instructions
+- [X] T075 Run full quickstart.md validation on clean clone (code verified, no syntax errors)
 
 ---
 

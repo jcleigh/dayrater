@@ -4,17 +4,21 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import com.dayrater.data.repository.ThemeMode
 import com.dayrater.ui.navigation.DayRaterBottomNavBar
 import com.dayrater.ui.navigation.DayRaterNavGraph
 import com.dayrater.ui.navigation.Screen
@@ -32,9 +36,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            DayRaterTheme {
-                DayRaterApp()
-            }
+            DayRaterApp()
         }
     }
 }
@@ -43,7 +45,26 @@ class MainActivity : ComponentActivity() {
  * Root composable for the DayRater app.
  */
 @Composable
-fun DayRaterApp() {
+fun DayRaterApp(
+    viewModel: MainViewModel = hiltViewModel()
+) {
+    val themeMode by viewModel.themeMode.collectAsState()
+    val isDarkTheme = when (themeMode) {
+        ThemeMode.SYSTEM -> isSystemInDarkTheme()
+        ThemeMode.LIGHT -> false
+        ThemeMode.DARK -> true
+    }
+    
+    DayRaterTheme(darkTheme = isDarkTheme) {
+        DayRaterContent()
+    }
+}
+
+/**
+ * Main content composable with navigation.
+ */
+@Composable
+private fun DayRaterContent() {
     val navController = rememberNavController()
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     
