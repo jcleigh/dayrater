@@ -32,3 +32,37 @@ google-services.json
 
 # Android Profiling
 *.hprof
+
+# Built application files
+*.aar
+*.ap_
+*.dex
+*.class
+bin/
+gen/
+out/
+release/
+
+# Kotlin
+.kotlin/
+
+# Android SDK (for dev container)
+.android-sdk/
+
+# Mac OS
+.DS_Store
+
+# Windows
+Thumbs.db
+ehthumbs.db
+
+# VS Code
+.vscode/
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# Environment files
+.env
+.env.local

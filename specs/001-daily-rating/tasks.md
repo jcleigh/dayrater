@@ -19,14 +19,14 @@
 
 **Purpose**: Initialize Android project with all dependencies and tooling
 
-- [ ] T001 Create Android project with Gradle Kotlin DSL in `app/build.gradle.kts`, `settings.gradle.kts`
-- [ ] T002 Configure version catalog with all dependencies in `gradle/libs.versions.toml`
-- [ ] T003 [P] Create Dev Container configuration in `.devcontainer/devcontainer.json`
-- [ ] T004 [P] Create Android SDK setup script in `.devcontainer/setup-android-sdk.sh`
-- [ ] T005 [P] Create GitHub Actions build workflow in `.github/workflows/build.yml`
-- [ ] T006 [P] Create GitHub Actions release workflow in `.github/workflows/release.yml`
-- [ ] T007 [P] Configure Hilt in `app/src/main/java/com/dayrater/DayRaterApplication.kt`
-- [ ] T008 Create `AndroidManifest.xml` with FileProvider for export in `app/src/main/AndroidManifest.xml`
+- [X] T001 Create Android project with Gradle Kotlin DSL in `app/build.gradle.kts`, `settings.gradle.kts`
+- [X] T002 Configure version catalog with all dependencies in `gradle/libs.versions.toml`
+- [X] T003 [P] Create Dev Container configuration in `.devcontainer/devcontainer.json`
+- [X] T004 [P] Create Android SDK setup script in `.devcontainer/setup-android-sdk.sh`
+- [X] T005 [P] Create GitHub Actions build workflow in `.github/workflows/build.yml`
+- [X] T006 [P] Create GitHub Actions release workflow in `.github/workflows/release.yml`
+- [X] T007 [P] Configure Hilt in `app/src/main/java/com/dayrater/DayRaterApplication.kt`
+- [X] T008 Create `AndroidManifest.xml` with FileProvider for export in `app/src/main/AndroidManifest.xml`
 
 **Checkpoint**: `./gradlew assembleDebug` succeeds, empty app installs on device
 
@@ -40,46 +40,46 @@
 
 ### Database Layer
 
-- [ ] T009 Create RatingValue enum in `app/src/main/java/com/dayrater/data/local/entity/RatingValue.kt`
-- [ ] T010 [P] Create CategoryType enum in `app/src/main/java/com/dayrater/data/local/entity/CategoryType.kt`
-- [ ] T011 [P] Create RelationshipType enum in `app/src/main/java/com/dayrater/data/local/entity/RelationshipType.kt`
-- [ ] T012 Create CategoryEntity in `app/src/main/java/com/dayrater/data/local/entity/CategoryEntity.kt`
-- [ ] T013 [P] Create FamilyMemberEntity in `app/src/main/java/com/dayrater/data/local/entity/FamilyMemberEntity.kt`
-- [ ] T014 Create DailyRatingEntity in `app/src/main/java/com/dayrater/data/local/entity/DailyRatingEntity.kt`
-- [ ] T015 Create Room TypeConverters in `app/src/main/java/com/dayrater/data/local/Converters.kt`
-- [ ] T016 Create CategoryDao in `app/src/main/java/com/dayrater/data/local/dao/CategoryDao.kt`
-- [ ] T017 [P] Create FamilyMemberDao in `app/src/main/java/com/dayrater/data/local/dao/FamilyMemberDao.kt`
-- [ ] T018 [P] Create RatingDao in `app/src/main/java/com/dayrater/data/local/dao/RatingDao.kt`
-- [ ] T019 Create DayRaterDatabase with all DAOs in `app/src/main/java/com/dayrater/data/local/DayRaterDatabase.kt`
-- [ ] T020 Create DatabaseModule for Hilt DI in `app/src/main/java/com/dayrater/di/DatabaseModule.kt`
+- [X] T009 Create RatingValue enum in `app/src/main/java/com/dayrater/data/local/entity/RatingValue.kt`
+- [X] T010 [P] Create CategoryType enum in `app/src/main/java/com/dayrater/data/local/entity/CategoryType.kt`
+- [X] T011 [P] Create RelationshipType enum in `app/src/main/java/com/dayrater/data/local/entity/RelationshipType.kt`
+- [X] T012 Create CategoryEntity in `app/src/main/java/com/dayrater/data/local/entity/CategoryEntity.kt`
+- [X] T013 [P] Create FamilyMemberEntity in `app/src/main/java/com/dayrater/data/local/entity/FamilyMemberEntity.kt`
+- [X] T014 Create DailyRatingEntity in `app/src/main/java/com/dayrater/data/local/entity/DailyRatingEntity.kt`
+- [X] T015 Create Room TypeConverters in `app/src/main/java/com/dayrater/data/local/Converters.kt`
+- [X] T016 Create CategoryDao in `app/src/main/java/com/dayrater/data/local/dao/CategoryDao.kt`
+- [X] T017 [P] Create FamilyMemberDao in `app/src/main/java/com/dayrater/data/local/dao/FamilyMemberDao.kt`
+- [X] T018 [P] Create RatingDao in `app/src/main/java/com/dayrater/data/local/dao/RatingDao.kt`
+- [X] T019 Create DayRaterDatabase with all DAOs in `app/src/main/java/com/dayrater/data/local/DayRaterDatabase.kt`
+- [X] T020 Create DatabaseModule for Hilt DI in `app/src/main/java/com/dayrater/di/DatabaseModule.kt`
 
 ### Domain Layer
 
-- [ ] T021 [P] Create Category domain model in `app/src/main/java/com/dayrater/domain/model/Category.kt`
-- [ ] T022 [P] Create FamilyMember domain model in `app/src/main/java/com/dayrater/domain/model/FamilyMember.kt`
-- [ ] T023 [P] Create Rating domain model in `app/src/main/java/com/dayrater/domain/model/Rating.kt`
-- [ ] T024 Create DayRatings domain model in `app/src/main/java/com/dayrater/domain/model/DayRatings.kt`
+- [X] T021 [P] Create Category domain model in `app/src/main/java/com/dayrater/domain/model/Category.kt`
+- [X] T022 [P] Create FamilyMember domain model in `app/src/main/java/com/dayrater/domain/model/FamilyMember.kt`
+- [X] T023 [P] Create Rating domain model in `app/src/main/java/com/dayrater/domain/model/Rating.kt`
+- [X] T024 Create DayRatings domain model in `app/src/main/java/com/dayrater/domain/model/DayRatings.kt`
 
 ### Theme & Navigation
 
-- [ ] T025 [P] Create Color.kt with Material 3 color scheme in `app/src/main/java/com/dayrater/ui/theme/Color.kt`
-- [ ] T026 [P] Create Type.kt with typography in `app/src/main/java/com/dayrater/ui/theme/Type.kt`
-- [ ] T027 Create Theme.kt with light/dark themes in `app/src/main/java/com/dayrater/ui/theme/Theme.kt`
-- [ ] T028 Create Screen sealed class for navigation in `app/src/main/java/com/dayrater/ui/navigation/Screen.kt`
-- [ ] T029 Create NavGraph with all routes in `app/src/main/java/com/dayrater/ui/navigation/NavGraph.kt`
-- [ ] T030 Create BottomNavBar component in `app/src/main/java/com/dayrater/ui/components/BottomNavBar.kt`
-- [ ] T031 Create MainActivity with Compose setup in `app/src/main/java/com/dayrater/MainActivity.kt`
+- [X] T025 [P] Create Color.kt with Material 3 color scheme in `app/src/main/java/com/dayrater/ui/theme/Color.kt`
+- [X] T026 [P] Create Type.kt with typography in `app/src/main/java/com/dayrater/ui/theme/Type.kt`
+- [X] T027 Create Theme.kt with light/dark themes in `app/src/main/java/com/dayrater/ui/theme/Theme.kt`
+- [X] T028 Create Screen sealed class for navigation in `app/src/main/java/com/dayrater/ui/navigation/Screen.kt`
+- [X] T029 Create NavGraph with all routes in `app/src/main/java/com/dayrater/ui/navigation/NavGraph.kt`
+- [X] T030 Create BottomNavBar component in `app/src/main/java/com/dayrater/ui/navigation/BottomNavBar.kt`
+- [X] T031 Create MainActivity with Compose setup in `app/src/main/java/com/dayrater/ui/MainActivity.kt`
 
 ### Shared UI Components
 
-- [ ] T032 Create EmojiRatingSelector component in `app/src/main/java/com/dayrater/ui/components/EmojiRatingSelector.kt`
-- [ ] T033 Create CategoryCard component in `app/src/main/java/com/dayrater/ui/components/CategoryCard.kt`
+- [X] T032 Create EmojiRatingSelector component in `app/src/main/java/com/dayrater/ui/components/EmojiRatingSelector.kt`
+- [X] T033 Create CategoryCard component in `app/src/main/java/com/dayrater/ui/components/CategoryCard.kt`
 
 ### Resources
 
-- [ ] T034 [P] Create strings.xml with all UI strings in `app/src/main/res/values/strings.xml`
-- [ ] T035 [P] Create themes.xml (light) in `app/src/main/res/values/themes.xml`
-- [ ] T036 [P] Create themes.xml (dark) in `app/src/main/res/values-night/themes.xml`
+- [X] T034 [P] Create strings.xml with all UI strings in `app/src/main/res/values/strings.xml`
+- [X] T035 [P] Create themes.xml (light) in `app/src/main/res/values/themes.xml`
+- [X] T036 [P] Create themes.xml (dark) in `app/src/main/res/values-night/themes.xml`
 
 **Checkpoint**: App launches with empty rating screen, navigation works, theme switches
 
@@ -93,15 +93,15 @@
 
 ### Repository Layer
 
-- [ ] T037 [US1] Create RatingRepository interface in `app/src/main/java/com/dayrater/data/repository/RatingRepository.kt`
-- [ ] T038 [US1] Implement RatingRepositoryImpl with Room DAOs in `app/src/main/java/com/dayrater/data/repository/RatingRepositoryImpl.kt`
-- [ ] T039 [US1] Add default category seeding logic to DayRaterDatabase callback
+- [X] T037 [US1] Create RatingRepository interface in `app/src/main/java/com/dayrater/data/repository/RatingRepository.kt`
+- [X] T038 [US1] Implement RatingRepositoryImpl with Room DAOs in `app/src/main/java/com/dayrater/data/repository/RatingRepositoryImpl.kt`
+- [X] T039 [US1] Add default category seeding logic to DayRaterDatabase callback
 
 ### UI Implementation
 
-- [ ] T040 [US1] Create RatingUiState data class in `app/src/main/java/com/dayrater/ui/rating/RatingUiState.kt`
-- [ ] T041 [US1] Create RatingViewModel in `app/src/main/java/com/dayrater/ui/rating/RatingViewModel.kt`
-- [ ] T042 [US1] Implement RatingScreen composable in `app/src/main/java/com/dayrater/ui/rating/RatingScreen.kt`
+- [X] T040 [US1] Create RatingUiState data class in `app/src/main/java/com/dayrater/ui/rating/RatingUiState.kt`
+- [X] T041 [US1] Create RatingViewModel in `app/src/main/java/com/dayrater/ui/rating/RatingViewModel.kt`
+- [X] T042 [US1] Implement RatingScreen composable in `app/src/main/java/com/dayrater/ui/rating/RatingScreen.kt`
 
 ### Unit Tests
 
@@ -119,17 +119,17 @@
 
 ### Repository Layer
 
-- [ ] T044 [US2] Create FamilyRepository interface in `app/src/main/java/com/dayrater/data/repository/FamilyRepository.kt`
-- [ ] T045 [US2] Implement FamilyRepositoryImpl in `app/src/main/java/com/dayrater/data/repository/FamilyRepositoryImpl.kt`
+- [X] T044 [US2] Create FamilyRepository interface in `app/src/main/java/com/dayrater/data/repository/FamilyRepository.kt`
+- [X] T045 [US2] Implement FamilyRepositoryImpl in `app/src/main/java/com/dayrater/data/repository/FamilyRepositoryImpl.kt`
 
 ### UI Implementation
 
-- [ ] T046 [US2] Create SettingsUiState data class in `app/src/main/java/com/dayrater/ui/settings/SettingsUiState.kt`
-- [ ] T047 [US2] Create SettingsViewModel in `app/src/main/java/com/dayrater/ui/settings/SettingsViewModel.kt`
-- [ ] T048 [US2] Implement SettingsScreen composable in `app/src/main/java/com/dayrater/ui/settings/SettingsScreen.kt`
-- [ ] T049 [US2] Create FamilySetupUiState data class in `app/src/main/java/com/dayrater/ui/settings/FamilySetupUiState.kt`
-- [ ] T050 [US2] Create FamilySetupViewModel in `app/src/main/java/com/dayrater/ui/settings/FamilySetupViewModel.kt`
-- [ ] T051 [US2] Implement FamilySetupScreen composable in `app/src/main/java/com/dayrater/ui/settings/FamilySetupScreen.kt`
+- [X] T046 [US2] Create SettingsUiState data class in `app/src/main/java/com/dayrater/ui/settings/SettingsUiState.kt`
+- [X] T047 [US2] Create SettingsViewModel in `app/src/main/java/com/dayrater/ui/settings/SettingsViewModel.kt`
+- [X] T048 [US2] Implement SettingsScreen composable in `app/src/main/java/com/dayrater/ui/settings/SettingsScreen.kt`
+- [X] T049 [US2] Create FamilySetupUiState data class in `app/src/main/java/com/dayrater/ui/settings/FamilySetupUiState.kt`
+- [X] T050 [US2] Create FamilySetupViewModel in `app/src/main/java/com/dayrater/ui/settings/FamilySetupViewModel.kt`
+- [X] T051 [US2] Implement FamilySetupScreen composable in `app/src/main/java/com/dayrater/ui/settings/FamilySetupScreen.kt`
 
 ### Unit Tests
 
@@ -147,12 +147,12 @@
 
 ### UI Implementation
 
-- [ ] T053 [US3] Create HistoryUiState data class in `app/src/main/java/com/dayrater/ui/history/HistoryUiState.kt`
-- [ ] T054 [US3] Create HistoryViewModel in `app/src/main/java/com/dayrater/ui/history/HistoryViewModel.kt`
-- [ ] T055 [US3] Implement HistoryScreen composable in `app/src/main/java/com/dayrater/ui/history/HistoryScreen.kt`
-- [ ] T056 [US3] Create DayDetailUiState data class in `app/src/main/java/com/dayrater/ui/history/DayDetailUiState.kt`
-- [ ] T057 [US3] Create DayDetailViewModel in `app/src/main/java/com/dayrater/ui/history/DayDetailViewModel.kt`
-- [ ] T058 [US3] Implement DayDetailScreen composable in `app/src/main/java/com/dayrater/ui/history/DayDetailScreen.kt`
+- [X] T053 [US3] Create HistoryUiState data class in `app/src/main/java/com/dayrater/ui/history/HistoryUiState.kt`
+- [X] T054 [US3] Create HistoryViewModel in `app/src/main/java/com/dayrater/ui/history/HistoryViewModel.kt`
+- [X] T055 [US3] Implement HistoryScreen composable in `app/src/main/java/com/dayrater/ui/history/HistoryScreen.kt`
+- [X] T056 [US3] Create DayDetailUiState data class in `app/src/main/java/com/dayrater/ui/history/DayDetailUiState.kt`
+- [X] T057 [US3] Create DayDetailViewModel in `app/src/main/java/com/dayrater/ui/history/DayDetailViewModel.kt`
+- [X] T058 [US3] Implement DayDetailScreen composable in `app/src/main/java/com/dayrater/ui/history/DayDetailScreen.kt`
 
 **Checkpoint**: US3 complete — can browse history and view any past day's ratings
 
