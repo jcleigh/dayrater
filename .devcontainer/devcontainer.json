@@ -1,0 +1,37 @@
+{
+  "name": "DayRater Android",
+  "image": "mcr.microsoft.com/devcontainers/base:ubuntu-22.04",
+  "features": {
+    "ghcr.io/devcontainers/features/java:1": {
+      "version": "21",
+      "installGradle": "true",
+      "gradleVersion": "8.11"
+    }
+  },
+  "postCreateCommand": "bash .devcontainer/setup-android-sdk.sh",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "mathiasfrohlich.Kotlin",
+        "vscjava.vscode-gradle",
+        "redhat.vscode-xml"
+      ],
+      "settings": {
+        "editor.formatOnSave": true,
+        "editor.tabSize": 4
+      }
+    }
+  },
+  "remoteEnv": {
+    "ANDROID_HOME": "${containerWorkspaceFolder}/.android-sdk",
+    "ANDROID_SDK_ROOT": "${containerWorkspaceFolder}/.android-sdk",
+    "PATH": "${containerEnv:PATH}:${containerWorkspaceFolder}/.android-sdk/cmdline-tools/latest/bin:${containerWorkspaceFolder}/.android-sdk/platform-tools"
+  },
+  "forwardPorts": [5555],
+  "portsAttributes": {
+    "5555": {
+      "label": "ADB",
+      "onAutoForward": "silent"
+    }
+  }
+}
