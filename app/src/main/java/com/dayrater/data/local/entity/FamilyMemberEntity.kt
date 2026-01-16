@@ -15,8 +15,14 @@ data class FamilyMemberEntity(
     /** Display name (e.g., "Alex", "Emma") */
     val name: String,
     
-    /** SPOUSE or CHILD */
-    val relationshipType: RelationshipType,
+    /** SELF, SPOUSE, or CHILD */
+    val relationship: RelationshipType,
+    
+    /** Whether this family member is active (soft delete support) */
+    val isActive: Boolean = true,
+    
+    /** Display order for sorting */
+    val displayOrder: Int = 0,
     
     /** Unix timestamp of creation */
     val createdAt: Long = System.currentTimeMillis()

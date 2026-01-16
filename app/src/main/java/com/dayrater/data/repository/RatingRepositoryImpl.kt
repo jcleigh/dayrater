@@ -43,11 +43,12 @@ class RatingRepositoryImpl @Inject constructor(
             
             val categoryMap = categories.associateBy { it.id }
             val ratingList = ratings.mapNotNull { entity ->
-                val category = categoryMap[entity.categoryId] ?: return@mapNotNull null
+                val catId = entity.categoryId ?: return@mapNotNull null
+                val category = categoryMap[catId] ?: return@mapNotNull null
                 Rating(
-                    categoryId = entity.categoryId,
+                    categoryId = catId,
                     categoryName = category.name,
-                    value = entity.rating
+                    value = entity.ratingValue
                 )
             }
             
@@ -74,11 +75,12 @@ class RatingRepositoryImpl @Inject constructor(
             familyMembers.associate { member ->
                 val memberRatings = ratingsByMember[member.id] ?: emptyList()
                 val ratingList = memberRatings.mapNotNull { entity ->
-                    val category = categoryMap[entity.categoryId] ?: return@mapNotNull null
+                    val catId = entity.categoryId ?: return@mapNotNull null
+                    val category = categoryMap[catId] ?: return@mapNotNull null
                     Rating(
-                        categoryId = entity.categoryId,
+                        categoryId = catId,
                         categoryName = category.name,
-                        value = entity.rating
+                        value = entity.ratingValue
                     )
                 }
                 
@@ -101,7 +103,7 @@ class RatingRepositoryImpl @Inject constructor(
             familyMemberId = familyMemberId,
             categoryId = categoryId,
             date = date,
-            rating = value
+            ratingValue = value
         )
         ratingDao.upsertRating(entity)
     }
@@ -180,7 +182,7 @@ class RatingRepositoryImpl @Inject constructor(
             val categoryName = categoryMap[rating.categoryId]?.name ?: "Unknown"
             val date = rating.date.format(DateTimeFormatter.ISO_LOCAL_DATE)
             
-            sb.appendLine("$date,$memberName,$categoryName,${rating.rating.label}")
+            sb.appendLine("$date,$memberName,$categoryName,${rating.ratingValue.label}")
         }
         
         return sb.toString()
@@ -208,8 +210,8 @@ class RatingRepositoryImpl @Inject constructor(
             sb.appendLine("      \"date\": \"$date\",")
             sb.appendLine("      \"familyMember\": \"$memberName\",")
             sb.appendLine("      \"category\": \"$categoryName\",")
-            sb.appendLine("      \"rating\": \"${rating.rating.label}\",")
-            sb.appendLine("      \"emoji\": \"${rating.rating.emoji}\"")
+            sb.appendLine("      \"rating\": \"${rating.ratingValue.label}\",")
+            sb.appendLine("      \"emoji\": \"${rating.ratingValue.emoji}\"")
             sb.appendLine("    }$comma")
         }
         

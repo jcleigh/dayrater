@@ -209,9 +209,7 @@ fun EmojiRatingIndicator(
  * Maps a RatingValue to its associated color.
  */
 private fun RatingValue.toColor(): Color = when (this) {
-    RatingValue.GREAT -> RatingColors.Great
-    RatingValue.GOOD -> RatingColors.Good
-    RatingValue.OKAY -> RatingColors.Okay
-    RatingValue.NOT_GREAT -> RatingColors.NotGreat
-    RatingValue.BAD -> RatingColors.Bad
+    RatingValue.POSITIVE -> RatingColors.Positive
+    RatingValue.NEUTRAL -> RatingColors.Neutral
+    RatingValue.NEGATIVE -> RatingColors.Negative
 }

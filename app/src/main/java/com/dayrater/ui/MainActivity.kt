@@ -12,7 +12,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -48,7 +48,7 @@ class MainActivity : ComponentActivity() {
 fun DayRaterApp(
     viewModel: MainViewModel = hiltViewModel()
 ) {
-    val themeMode by viewModel.themeMode.collectAsState()
+    val themeMode by viewModel.themeMode.collectAsState(initial = ThemeMode.SYSTEM)
     val isDarkTheme = when (themeMode) {
         ThemeMode.SYSTEM -> isSystemInDarkTheme()
         ThemeMode.LIGHT -> false
@@ -69,7 +69,7 @@ private fun DayRaterContent() {
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     
     // Determine current screen for bottom nav highlighting
-    var currentScreen by rememberSaveable { mutableStateOf<Screen>(Screen.Home) }
+    var currentScreen by remember { mutableStateOf<Screen>(Screen.Home) }
     
     // Update current screen based on navigation
     navBackStackEntry?.destination?.route?.let { route ->

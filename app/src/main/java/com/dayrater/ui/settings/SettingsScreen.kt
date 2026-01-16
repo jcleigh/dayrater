@@ -14,11 +14,11 @@ import androidx.compose.foundation.selection.selectable
 import androidx.compose.foundation.selection.selectableGroup
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.ArrowForward
-import androidx.compose.material.icons.filled.Category
-import androidx.compose.material.icons.filled.DarkMode
-import androidx.compose.material.icons.filled.FileDownload
-import androidx.compose.material.icons.filled.People
+import androidx.compose.material.icons.automirrored.filled.KeyboardArrowRight
+import androidx.compose.material.icons.filled.Brightness6
+import androidx.compose.material.icons.filled.Group
+import androidx.compose.material.icons.filled.Share
+import androidx.compose.material.icons.filled.Star
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -86,7 +86,7 @@ fun SettingsScreen(
         ) {
             // Manage Categories
             SettingsItem(
-                icon = Icons.Default.Category,
+                icon = Icons.Default.Star,
                 title = stringResource(R.string.settings_categories),
                 subtitle = "${uiState.categoryCount} categories",
                 onClick = onNavigateToManageCategories
@@ -96,7 +96,7 @@ fun SettingsScreen(
             
             // Manage Family
             SettingsItem(
-                icon = Icons.Default.People,
+                icon = Icons.Default.Group,
                 title = stringResource(R.string.settings_family),
                 subtitle = "${uiState.familyMemberCount} family members",
                 onClick = onNavigateToManageFamily
@@ -106,7 +106,7 @@ fun SettingsScreen(
             
             // Export Data
             SettingsItem(
-                icon = Icons.Default.FileDownload,
+                icon = Icons.Default.Share,
                 title = stringResource(R.string.settings_export),
                 subtitle = stringResource(R.string.settings_export_desc),
                 onClick = onNavigateToExport
@@ -116,7 +116,7 @@ fun SettingsScreen(
             
             // Theme
             SettingsItem(
-                icon = Icons.Default.DarkMode,
+                icon = Icons.Default.Brightness6,
                 title = stringResource(R.string.settings_theme),
                 subtitle = getThemeModeLabel(uiState.themeMode),
                 onClick = { viewModel.onEvent(SettingsEvent.ShowThemeDialog) }
@@ -190,7 +190,7 @@ private fun SettingsItem(
         }
         
         Icon(
-            imageVector = Icons.AutoMirrored.Filled.ArrowForward,
+            imageVector = Icons.AutoMirrored.Filled.KeyboardArrowRight,
             contentDescription = null,
             tint = MaterialTheme.colorScheme.onSurfaceVariant
         )

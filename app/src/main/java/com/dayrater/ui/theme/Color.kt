@@ -72,11 +72,9 @@ val OnErrorContainerDark = Color(0xFFF9DEDC)
 
 // Emoji rating colors for visual feedback
 object RatingColors {
-    val Great = Color(0xFF4CAF50)      // Green - Great day
-    val Good = Color(0xFF8BC34A)       // Light green - Good day
-    val Okay = Color(0xFFFFC107)       // Amber - Okay day
-    val NotGreat = Color(0xFFFF9800)   // Orange - Not great
-    val Bad = Color(0xFFF44336)        // Red - Bad day
+    val Positive = Color(0xFF4CAF50)  // Green - Happy/Good day
+    val Neutral = Color(0xFFFFC107)   // Amber - Okay/Neutral day
+    val Negative = Color(0xFFF44336)  // Red - Sad/Bad day
 }
 
 // Surface tones for cards and containers

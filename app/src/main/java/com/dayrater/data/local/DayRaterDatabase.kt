@@ -84,10 +84,10 @@ abstract class DayRaterDatabase : RoomDatabase() {
                         DEFAULT_CATEGORIES.forEach { category ->
                             db.execSQL(
                                 """
-                                INSERT INTO categories (name, type, displayOrder, isActive, createdAt)
-                                VALUES (?, ?, ?, 1, ?)
+                                INSERT INTO categories (name, type, familyMemberId, displayOrder, isActive, createdAt)
+                                VALUES (?, ?, NULL, ?, 1, ?)
                                 """.trimIndent(),
-                                arrayOf(
+                                arrayOf<Any>(
                                     category.name,
                                     category.type.name,
                                     category.displayOrder,
@@ -99,10 +99,10 @@ abstract class DayRaterDatabase : RoomDatabase() {
                         // Seed self family member
                         db.execSQL(
                             """
-                            INSERT INTO family_members (name, relationship, displayOrder, isActive, createdAt)
-                            VALUES (?, ?, ?, 1, ?)
+                            INSERT INTO family_members (name, relationship, isActive, displayOrder, createdAt)
+                            VALUES (?, ?, 1, ?, ?)
                             """.trimIndent(),
-                            arrayOf(
+                            arrayOf<Any>(
                                 "Me",
                                 RelationshipType.SELF.name,
                                 0,

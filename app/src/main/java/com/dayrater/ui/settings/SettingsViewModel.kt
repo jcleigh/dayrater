@@ -35,25 +35,39 @@ class SettingsViewModel @Inject constructor(
     
     private fun loadData() {
         viewModelScope.launch {
-            combine(
-                ratingRepository.getActiveCategories(),
-                familyRepository.getActiveFamilyMembers(),
-                settingsRepository.themeMode
-            ) { categories, familyMembers, themeMode ->
-                Triple(categories.size, familyMembers.size, themeMode)
-            }
-            .catch { e ->
-                _uiState.update { it.copy(error = e.message) }
-            }
-            .collect { (categoryCount, familyMemberCount, themeMode) ->
-                _uiState.update { state ->
-                    state.copy(
-                        isLoading = false,
-                        categoryCount = categoryCount,
-                        familyMemberCount = familyMemberCount,
-                        themeMode = themeMode
-                    )
+            try {
+                // Use separate collections to avoid combine issues
+                launch {
+                    ratingRepository.getActiveCategories()
+                        .catch { e -> 
+                            _uiState.update { it.copy(error = "Failed to load categories: ${e.message}") }
+                        }
+                        .collect { categories ->
+                            _uiState.update { it.copy(categoryCount = categories.size, isLoading = false) }
+                        }
                 }
+                
+                launch {
+                    familyRepository.getActiveFamilyMembers()
+                        .catch { e ->
+                            _uiState.update { it.copy(error = "Failed to load family members: ${e.message}") }
+                        }
+                        .collect { familyMembers ->
+                            _uiState.update { it.copy(familyMemberCount = familyMembers.size) }
+                        }
+                }
+                
+                launch {
+                    settingsRepository.themeMode
+                        .catch { e ->
+                            _uiState.update { it.copy(error = "Failed to load theme: ${e.message}") }
+                        }
+                        .collect { themeMode ->
+                            _uiState.update { it.copy(themeMode = themeMode) }
+                        }
+                }
+            } catch (e: Exception) {
+                _uiState.update { it.copy(isLoading = false, error = e.message ?: "Unknown error") }
             }
         }
     }
