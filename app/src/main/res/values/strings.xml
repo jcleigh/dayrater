@@ -115,4 +115,57 @@
     <string name="cd_previous_day">Previous day</string>
     <string name="cd_next_day">Next day</string>
     <string name="cd_select_date">Select date</string>
+    
+    <!-- Insights screens -->
+    <string name="nav_insights">Insights</string>
+    <string name="insights_title">Insights</string>
+    <string name="insights_weekly">Weekly Summary</string>
+    <string name="insights_monthly">Monthly Calendar</string>
+    <string name="insights_trends">Trends</string>
+    <string name="insights_statistics">Statistics</string>
+    <string name="insights_view_history">View History</string>
+    <string name="insights_no_data">No data yet. Start rating your days!</string>
+    <string name="insights_need_more_data">Rate a few more days to see insights here.</string>
+    
+    <!-- Weekly summary -->
+    <string name="weekly_summary_title">Week of %s</string>
+    <string name="weekly_days_rated">%d of 7 days rated</string>
+    <string name="weekly_no_ratings">No ratings this week</string>
+    <string name="weekly_prev">Previous week</string>
+    <string name="weekly_next">Next week</string>
+    <string name="weekly_category_detail_title">%s - Week of %s</string>
+    
+    <!-- Monthly calendar -->
+    <string name="monthly_title">%s %d</string>
+    <string name="monthly_prev">Previous month</string>
+    <string name="monthly_next">Next month</string>
+    <string name="monthly_no_ratings">No ratings this month</string>
+    
+    <!-- Trends -->
+    <string name="trends_title">Trends</string>
+    <string name="trends_overall">Overall Day</string>
+    <string name="trends_week">1 Week</string>
+    <string name="trends_month">1 Month</string>
+    <string name="trends_3months">3 Months</string>
+    <string name="trends_year">1 Year</string>
+    <string name="trends_all">All Time</string>
+    <string name="trends_no_data">Not enough data to show trends.</string>
+    <string name="trends_average">Average: %.1f</string>
+    
+    <!-- Statistics -->
+    <string name="stats_title">Statistics</string>
+    <string name="stats_current_streak">Current Streak</string>
+    <string name="stats_longest_streak">Longest Streak</string>
+    <string name="stats_total_days">Total Days Rated</string>
+    <string name="stats_days_format">%d days</string>
+    <string name="stats_day_format">%d day</string>
+    <string name="stats_rating_first">First rating: %s</string>
+    <string name="stats_category_averages">Category Averages</string>
+    <string name="stats_day_of_week">Best/Worst Days</string>
+    <string name="stats_best_day">Best: %s</string>
+    <string name="stats_worst_day">Worst: %s</string>
+    <string name="stats_distribution">Rating Distribution</string>
+    <string name="stats_positive_pct">%d%% happy</string>
+    <string name="stats_neutral_pct">%d%% neutral</string>
+    <string name="stats_negative_pct">%d%% sad</string>
 </resources>

@@ -2,6 +2,8 @@ package com.dayrater.di
 
 import com.dayrater.data.repository.FamilyRepository
 import com.dayrater.data.repository.FamilyRepositoryImpl
+import com.dayrater.data.repository.InsightsRepository
+import com.dayrater.data.repository.InsightsRepositoryImpl
 import com.dayrater.data.repository.RatingRepository
 import com.dayrater.data.repository.RatingRepositoryImpl
 import com.dayrater.data.repository.SettingsRepository
@@ -36,4 +38,10 @@ abstract class RepositoryModule {
     abstract fun bindSettingsRepository(
         settingsRepositoryImpl: SettingsRepositoryImpl
     ): SettingsRepository
+    
+    @Binds
+    @Singleton
+    abstract fun bindInsightsRepository(
+        insightsRepositoryImpl: InsightsRepositoryImpl
+    ): InsightsRepository
 }

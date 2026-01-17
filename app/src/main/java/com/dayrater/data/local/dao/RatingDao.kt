@@ -5,8 +5,31 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.dayrater.data.local.entity.DailyRatingEntity
+import com.dayrater.data.local.entity.RatingValue
 import kotlinx.coroutines.flow.Flow
 import java.time.LocalDate
+
+/**
+ * Helper data classes for query results.
+ */
+data class RatingWithCategory(
+    val id: Long,
+    val date: LocalDate,
+    val categoryId: Long?,
+    val categoryName: String?,
+    val ratingValue: RatingValue,
+    val updatedAt: Long
+)
+
+data class DateRatingPair(
+    val date: LocalDate,
+    val ratingValue: RatingValue
+)
+
+data class RatingCount(
+    val ratingValue: RatingValue,
+    val count: Int
+)
 
 /**
  * Data Access Object for daily rating operations.
@@ -86,4 +109,65 @@ interface RatingDao {
      */
     @Query("DELETE FROM daily_ratings")
     suspend fun deleteAllRatings()
+    
+    // ========== INSIGHTS QUERIES ==========
+    
+    /**
+     * Observe all ratings within a date range, with category info.
+     * Used for weekly/monthly summaries.
+     */
+    @Query("""
+        SELECT dr.id, dr.date, dr.categoryId, c.name as categoryName, dr.ratingValue, dr.updatedAt
+        FROM daily_ratings dr
+        LEFT JOIN categories c ON dr.categoryId = c.id
+        WHERE dr.date BETWEEN :startDate AND :endDate
+        ORDER BY dr.date ASC, c.displayOrder ASC
+    """)
+    fun observeRatingsInRange(startDate: LocalDate, endDate: LocalDate): Flow<List<RatingWithCategory>>
+    
+    /**
+     * Observe all distinct dates that have at least one rating, for streak calculation.
+     */
+    @Query("SELECT DISTINCT date FROM daily_ratings ORDER BY date DESC")
+    fun observeAllRatedDates(): Flow<List<LocalDate>>
+    
+    /**
+     * Observe rating history for a specific category.
+     * Used for trend graphs.
+     */
+    @Query("""
+        SELECT date, ratingValue FROM daily_ratings
+        WHERE categoryId = :categoryId
+        ORDER BY date ASC
+    """)
+    fun observeCategoryHistory(categoryId: Long): Flow<List<DateRatingPair>>
+    
+    /**
+     * Observe ratings for "Overall Day" category in a date range.
+     * Used for monthly calendar heat map.
+     */
+    @Query("""
+        SELECT dr.date, dr.ratingValue FROM daily_ratings dr
+        INNER JOIN categories c ON dr.categoryId = c.id
+        WHERE c.name = 'Overall Day' 
+        AND dr.date BETWEEN :startDate AND :endDate
+    """)
+    fun observeOverallRatingsInRange(startDate: LocalDate, endDate: LocalDate): Flow<List<DateRatingPair>>
+    
+    /**
+     * Observe count of ratings grouped by rating value.
+     * Used for distribution statistics.
+     */
+    @Query("""
+        SELECT ratingValue, COUNT(*) as count
+        FROM daily_ratings
+        GROUP BY ratingValue
+    """)
+    fun observeRatingDistribution(): Flow<List<RatingCount>>
+    
+    /**
+     * Observe total number of distinct days with at least one rating.
+     */
+    @Query("SELECT COUNT(DISTINCT date) FROM daily_ratings")
+    fun observeTotalRatedDays(): Flow<Int>
 }

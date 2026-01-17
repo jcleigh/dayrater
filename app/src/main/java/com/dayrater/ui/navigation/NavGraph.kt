@@ -9,6 +9,9 @@ import androidx.navigation.toRoute
 import com.dayrater.ui.export.ExportScreen
 import com.dayrater.ui.history.DayDetailScreen
 import com.dayrater.ui.history.HistoryScreen
+import com.dayrater.ui.insights.CategoryWeekDetailScreen
+import com.dayrater.ui.insights.InsightsScreen
+import com.dayrater.ui.insights.WeeklySummaryScreen
 import com.dayrater.ui.rating.RatingScreen
 import com.dayrater.ui.settings.CustomCategoriesScreen
 import com.dayrater.ui.settings.FamilySetupScreen
@@ -81,6 +84,51 @@ fun DayRaterNavGraph(
                 onNavigateBack = { navController.popBackStack() }
             )
         }
+        
+        // ==================== Insights Screens ====================
+        
+        // Insights Hub
+        composable<Screen.Insights> {
+            InsightsScreen(
+                onNavigateToWeeklySummary = { navController.navigateToWeeklySummary() },
+                onNavigateToMonthlyCalendar = { navController.navigate(Screen.MonthlyCalendar) },
+                onNavigateToTrends = { navController.navigate(Screen.Trends) },
+                onNavigateToStatistics = { navController.navigate(Screen.Statistics) },
+                onNavigateToHistory = { navController.navigate(Screen.Calendar) }
+            )
+        }
+        
+        // Weekly Summary
+        composable<Screen.WeeklySummary> {
+            WeeklySummaryScreen(
+                onNavigateBack = { navController.popBackStack() },
+                onCategoryClick = { categoryId, weekStartEpochDay ->
+                    navController.navigateToCategoryWeekDetail(categoryId, weekStartEpochDay)
+                }
+            )
+        }
+        
+        // Category Week Detail
+        composable<Screen.CategoryWeekDetail> {
+            CategoryWeekDetailScreen(
+                onNavigateBack = { navController.popBackStack() }
+            )
+        }
+        
+        // Monthly Calendar (placeholder for now)
+        composable<Screen.MonthlyCalendar> {
+            PlaceholderScreen(title = "Monthly Calendar")
+        }
+        
+        // Trends (placeholder for now)
+        composable<Screen.Trends> {
+            PlaceholderScreen(title = "Trends")
+        }
+        
+        // Statistics (placeholder for now)
+        composable<Screen.Statistics> {
+            PlaceholderScreen(title = "Statistics")
+        }
     }
 }
 
@@ -128,4 +176,19 @@ fun NavHostController.navigateToManageFamily() {
  */
 fun NavHostController.navigateToExport() {
     navigate(Screen.Export)
+}
+
+/**
+ * Extension function to navigate to weekly summary for the current week.
+ */
+fun NavHostController.navigateToWeeklySummary(weekStartEpochDay: Long? = null) {
+    val epochDay = weekStartEpochDay ?: LocalDate.now().toEpochDay()
+    navigate(Screen.WeeklySummary(epochDay))
+}
+
+/**
+ * Extension function to navigate to category week detail.
+ */
+fun NavHostController.navigateToCategoryWeekDetail(categoryId: Long, weekStartEpochDay: Long) {
+    navigate(Screen.CategoryWeekDetail(categoryId, weekStartEpochDay))
 }

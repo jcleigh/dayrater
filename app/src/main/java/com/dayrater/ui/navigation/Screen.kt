@@ -50,6 +50,47 @@ sealed interface Screen {
      */
     @Serializable
     data object Export : Screen
+    
+    // ==================== Insights Screens ====================
+    
+    /**
+     * Insights hub screen - Entry point for all insights.
+     */
+    @Serializable
+    data object Insights : Screen
+    
+    /**
+     * Weekly summary screen - View aggregated data for a week.
+     * @param weekStartEpochDay The first day of the week as epoch day
+     */
+    @Serializable
+    data class WeeklySummary(val weekStartEpochDay: Long) : Screen
+    
+    /**
+     * Category week detail - Daily breakdown for a category in a specific week.
+     * @param categoryId The category ID
+     * @param weekStartEpochDay The first day of the week as epoch day
+     */
+    @Serializable
+    data class CategoryWeekDetail(val categoryId: Long, val weekStartEpochDay: Long) : Screen
+    
+    /**
+     * Monthly calendar screen - Heat map view for a month.
+     */
+    @Serializable
+    data object MonthlyCalendar : Screen
+    
+    /**
+     * Trends screen - Line graphs of rating history.
+     */
+    @Serializable
+    data object Trends : Screen
+    
+    /**
+     * Statistics screen - Streaks, averages, distribution.
+     */
+    @Serializable
+    data object Statistics : Screen
 }
 
 /**
@@ -57,6 +98,7 @@ sealed interface Screen {
  */
 val TopLevelDestinations = listOf(
     Screen.Home,
+    Screen.Insights,
     Screen.Calendar,
     Screen.Settings
 )
