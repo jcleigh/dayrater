@@ -11,6 +11,9 @@ import com.dayrater.ui.history.DayDetailScreen
 import com.dayrater.ui.history.HistoryScreen
 import com.dayrater.ui.insights.CategoryWeekDetailScreen
 import com.dayrater.ui.insights.InsightsScreen
+import com.dayrater.ui.insights.MonthlyCalendarScreen
+import com.dayrater.ui.insights.StatisticsScreen
+import com.dayrater.ui.insights.TrendsScreen
 import com.dayrater.ui.insights.WeeklySummaryScreen
 import com.dayrater.ui.rating.RatingScreen
 import com.dayrater.ui.settings.CustomCategoriesScreen
@@ -115,36 +118,27 @@ fun DayRaterNavGraph(
             )
         }
         
-        // Monthly Calendar (placeholder for now)
+        // Monthly Calendar
         composable<Screen.MonthlyCalendar> {
-            PlaceholderScreen(title = "Monthly Calendar")
+            MonthlyCalendarScreen(
+                onNavigateBack = { navController.popBackStack() },
+                onDayClick = { date ->
+                    navController.navigateToHistory(date)
+                }
+            )
         }
         
-        // Trends (placeholder for now)
+        // Trends
         composable<Screen.Trends> {
-            PlaceholderScreen(title = "Trends")
+            TrendsScreen(
+                onNavigateBack = { navController.popBackStack() }
+            )
         }
         
-        // Statistics (placeholder for now)
+        // Statistics
         composable<Screen.Statistics> {
-            PlaceholderScreen(title = "Statistics")
-        }
-    }
-}
-
-/**
- * Temporary placeholder screen for unimplemented destinations.
- */
-@Composable
-private fun PlaceholderScreen(title: String) {
-    androidx.compose.material3.Surface {
-        androidx.compose.foundation.layout.Box(
-            modifier = Modifier,
-            contentAlignment = androidx.compose.ui.Alignment.Center
-        ) {
-            androidx.compose.material3.Text(
-                text = title,
-                style = androidx.compose.material3.MaterialTheme.typography.headlineMedium
+            StatisticsScreen(
+                onNavigateBack = { navController.popBackStack() }
             )
         }
     }
