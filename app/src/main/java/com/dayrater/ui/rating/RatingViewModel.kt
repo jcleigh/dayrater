@@ -6,6 +6,7 @@ import com.dayrater.data.local.entity.RatingValue
 import com.dayrater.data.repository.FamilyRepository
 import com.dayrater.data.repository.RatingRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -29,6 +30,8 @@ class RatingViewModel @Inject constructor(
     
     private val _uiState = MutableStateFlow(RatingUiState())
     val uiState: StateFlow<RatingUiState> = _uiState.asStateFlow()
+    
+    private var ratingsObservationJob: Job? = null
     
     init {
         loadInitialData()
@@ -71,13 +74,17 @@ class RatingViewModel @Inject constructor(
     }
     
     private fun observeRatings() {
-        viewModelScope.launch {
+        // Cancel any existing observation before starting a new one
+        ratingsObservationJob?.cancel()
+        
+        ratingsObservationJob = viewModelScope.launch {
             val currentState = _uiState.value
             val familyMemberId = currentState.selectedFamilyMemberId ?: return@launch
+            val date = currentState.date
             
             combine(
                 ratingRepository.getActiveCategories(),
-                ratingRepository.getRatingsForDate(currentState.date, familyMemberId)
+                ratingRepository.getRatingsForDate(date, familyMemberId)
             ) { categories, dayRatings ->
                 val ratingsMap = dayRatings?.ratings?.associate { 
                     it.categoryId to it.value 
