@@ -8,7 +8,7 @@
 
         <!-- Enable edge-to-edge -->
         <item name="android:windowLightStatusBar">false</item>
-        <!-- windowLightNavigationBar requires API 27+ (moved to values-night-v27) -->
+        <item name="android:windowLightNavigationBar">false</item>
     </style>
 
     <!-- Splash screen theme -->

@@ -4,7 +4,7 @@ A simple Android app to track your daily vibes with emoji-based ratings.
 
 ## Features
 
-- 🎯 **Rate Your Day** - Track how your day went across multiple categories using 5 emoji levels (😄 Great → 😢 Bad)
+- 🎯 **Rate Your Day** - Track how your day went across multiple categories using 3 emoji levels (😄 Great → 😢 Bad)
 - 👨‍👩‍👧‍👦 **Family Tracking** - Add family members and track everyone's daily vibes
 - 📅 **Rating History** - Browse past ratings with a calendar view
 - ✏️ **Custom Categories** - Create your own categories beyond the defaults (Sleep, Diet, Exercise, Family Time)
