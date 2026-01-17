@@ -36,7 +36,7 @@ import com.dayrater.ui.theme.RatingColors
 
 /**
  * Emoji rating selector component.
- * Displays all 5 emoji ratings in a row for user selection.
+ * Displays all 3 emoji ratings in a row for user selection.
  * 
  * @param selectedRating The currently selected rating, or null if none selected
  * @param onRatingSelected Callback when a rating is selected
