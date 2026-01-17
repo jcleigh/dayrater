@@ -42,18 +42,18 @@ val bottomNavItems = listOf(
         contentDescription = "Home"
     ),
     BottomNavItem(
-        screen = Screen.Insights,
-        labelResId = R.string.nav_insights,
-        selectedIcon = Icons.Filled.Insights,
-        unselectedIcon = Icons.Outlined.Insights,
-        contentDescription = "Insights"
-    ),
-    BottomNavItem(
         screen = Screen.Calendar,
         labelResId = R.string.nav_calendar,
         selectedIcon = Icons.Filled.CalendarMonth,
         unselectedIcon = Icons.Outlined.CalendarMonth,
         contentDescription = "Calendar"
+    ),
+    BottomNavItem(
+        screen = Screen.Insights,
+        labelResId = R.string.nav_insights,
+        selectedIcon = Icons.Filled.Insights,
+        unselectedIcon = Icons.Outlined.Insights,
+        contentDescription = "Insights"
     ),
     BottomNavItem(
         screen = Screen.Settings,
