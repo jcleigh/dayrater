@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Base application theme (Light) -->
+    <!-- API 27+ specific theme attributes -->
     <style name="Theme.DayRater" parent="android:Theme.Material.Light.NoActionBar">
         <!-- Status bar color -->
         <item name="android:statusBarColor">@android:color/transparent</item>
@@ -8,6 +8,8 @@
         
         <!-- Enable edge-to-edge -->
         <item name="android:windowLightStatusBar">true</item>
+        <!-- This requires API 27+ -->
+        <item name="android:windowLightNavigationBar">true</item>
     </style>
     
     <!-- Splash screen theme -->
