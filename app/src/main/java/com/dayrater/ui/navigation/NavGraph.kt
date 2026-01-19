@@ -9,6 +9,12 @@ import androidx.navigation.toRoute
 import com.dayrater.ui.export.ExportScreen
 import com.dayrater.ui.history.DayDetailScreen
 import com.dayrater.ui.history.HistoryScreen
+import com.dayrater.ui.insights.CategoryWeekDetailScreen
+import com.dayrater.ui.insights.InsightsScreen
+import com.dayrater.ui.insights.MonthlyCalendarScreen
+import com.dayrater.ui.insights.StatisticsScreen
+import com.dayrater.ui.insights.TrendsScreen
+import com.dayrater.ui.insights.WeeklySummaryScreen
 import com.dayrater.ui.rating.RatingScreen
 import com.dayrater.ui.settings.CustomCategoriesScreen
 import com.dayrater.ui.settings.FamilySetupScreen
@@ -81,22 +87,58 @@ fun DayRaterNavGraph(
                 onNavigateBack = { navController.popBackStack() }
             )
         }
-    }
-}
-
-/**
- * Temporary placeholder screen for unimplemented destinations.
- */
-@Composable
-private fun PlaceholderScreen(title: String) {
-    androidx.compose.material3.Surface {
-        androidx.compose.foundation.layout.Box(
-            modifier = Modifier,
-            contentAlignment = androidx.compose.ui.Alignment.Center
-        ) {
-            androidx.compose.material3.Text(
-                text = title,
-                style = androidx.compose.material3.MaterialTheme.typography.headlineMedium
+        
+        // ==================== Insights Screens ====================
+        
+        // Insights Hub
+        composable<Screen.Insights> {
+            InsightsScreen(
+                onNavigateToWeeklySummary = { navController.navigateToWeeklySummary() },
+                onNavigateToMonthlyCalendar = { navController.navigate(Screen.MonthlyCalendar) },
+                onNavigateToTrends = { navController.navigate(Screen.Trends) },
+                onNavigateToStatistics = { navController.navigate(Screen.Statistics) },
+                onNavigateToHistory = { navController.navigate(Screen.Calendar) }
+            )
+        }
+        
+        // Weekly Summary
+        composable<Screen.WeeklySummary> {
+            WeeklySummaryScreen(
+                onNavigateBack = { navController.popBackStack() },
+                onCategoryClick = { categoryId, weekStartEpochDay ->
+                    navController.navigateToCategoryWeekDetail(categoryId, weekStartEpochDay)
+                }
+            )
+        }
+        
+        // Category Week Detail
+        composable<Screen.CategoryWeekDetail> {
+            CategoryWeekDetailScreen(
+                onNavigateBack = { navController.popBackStack() }
+            )
+        }
+        
+        // Monthly Calendar
+        composable<Screen.MonthlyCalendar> {
+            MonthlyCalendarScreen(
+                onNavigateBack = { navController.popBackStack() },
+                onDayClick = { date ->
+                    navController.navigateToHistory(date)
+                }
+            )
+        }
+        
+        // Trends
+        composable<Screen.Trends> {
+            TrendsScreen(
+                onNavigateBack = { navController.popBackStack() }
+            )
+        }
+        
+        // Statistics
+        composable<Screen.Statistics> {
+            StatisticsScreen(
+                onNavigateBack = { navController.popBackStack() }
             )
         }
     }
@@ -128,4 +170,19 @@ fun NavHostController.navigateToManageFamily() {
  */
 fun NavHostController.navigateToExport() {
     navigate(Screen.Export)
+}
+
+/**
+ * Extension function to navigate to weekly summary for the current week.
+ */
+fun NavHostController.navigateToWeeklySummary(weekStartEpochDay: Long? = null) {
+    val epochDay = weekStartEpochDay ?: LocalDate.now().toEpochDay()
+    navigate(Screen.WeeklySummary(epochDay))
+}
+
+/**
+ * Extension function to navigate to category week detail.
+ */
+fun NavHostController.navigateToCategoryWeekDetail(categoryId: Long, weekStartEpochDay: Long) {
+    navigate(Screen.CategoryWeekDetail(categoryId, weekStartEpochDay))
 }

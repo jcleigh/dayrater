@@ -9,6 +9,7 @@ import com.dayrater.data.repository.FamilyRepository
 import com.dayrater.data.repository.RatingRepository
 import com.dayrater.ui.navigation.Screen
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -35,6 +36,8 @@ class DayDetailViewModel @Inject constructor(
     
     private val _uiState = MutableStateFlow(DayDetailUiState(date = date))
     val uiState: StateFlow<DayDetailUiState> = _uiState.asStateFlow()
+    
+    private var ratingsObservationJob: Job? = null
     
     init {
         loadData()
@@ -72,7 +75,10 @@ class DayDetailViewModel @Inject constructor(
     }
     
     private fun observeRatings() {
-        viewModelScope.launch {
+        // Cancel any existing observation before starting a new one
+        ratingsObservationJob?.cancel()
+        
+        ratingsObservationJob = viewModelScope.launch {
             val currentState = _uiState.value
             val familyMemberId = currentState.selectedFamilyMemberId ?: return@launch
             

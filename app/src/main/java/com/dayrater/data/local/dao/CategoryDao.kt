@@ -20,6 +20,18 @@ interface CategoryDao {
     fun getActiveCategories(): Flow<List<CategoryEntity>>
     
     /**
+     * Observe all active categories ordered by display order (alias for clarity in insights).
+     */
+    @Query("SELECT * FROM categories WHERE isActive = 1 ORDER BY displayOrder ASC")
+    fun observeActiveCategories(): Flow<List<CategoryEntity>>
+    
+    /**
+     * Observe a specific category by ID.
+     */
+    @Query("SELECT * FROM categories WHERE id = :id")
+    fun observeCategoryById(id: Long): Flow<CategoryEntity?>
+    
+    /**
      * Observe all categories (including inactive) ordered by display order.
      */
     @Query("SELECT * FROM categories ORDER BY displayOrder ASC")

@@ -3,9 +3,11 @@ package com.dayrater.ui.navigation
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.CalendarMonth
 import androidx.compose.material.icons.filled.Home
+import androidx.compose.material.icons.filled.Insights
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material.icons.outlined.CalendarMonth
 import androidx.compose.material.icons.outlined.Home
+import androidx.compose.material.icons.outlined.Insights
 import androidx.compose.material.icons.outlined.Settings
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
@@ -45,6 +47,13 @@ val bottomNavItems = listOf(
         selectedIcon = Icons.Filled.CalendarMonth,
         unselectedIcon = Icons.Outlined.CalendarMonth,
         contentDescription = "Calendar"
+    ),
+    BottomNavItem(
+        screen = Screen.Insights,
+        labelResId = R.string.nav_insights,
+        selectedIcon = Icons.Filled.Insights,
+        unselectedIcon = Icons.Outlined.Insights,
+        contentDescription = "Insights"
     ),
     BottomNavItem(
         screen = Screen.Settings,
